@@ -4,7 +4,6 @@ from csv import DictReader
 from extract_walmart import walmart
 from extract_amazon import amazon
 from extract_google import google
-import logging
 
 if __name__ == '__main__':
 
@@ -24,13 +23,13 @@ if __name__ == '__main__':
             print("Beginning scraping-"+site)
             
             if site=='google':                
-                #google(url,product)
-                print("google")
+                google(url,product)
+                #print("google")
             elif site=='walmart':
-                #walmart(url,product)
-                print("walmart")
+                walmart(url,product)
+                #print("walmart")
             elif site=='amazon':
                 amazon(url, product)
-                print("amazon")
+                #print("amazon")
                 
             print("Finished scraping-"+site)

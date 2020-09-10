@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 
 from selenium import webdriver
-import os
 import csv
 from random import randint
 from time import sleep
-import logging
 from selenium.common.exceptions import NoSuchElementException
 
 def walmart(url,product):
-    chrome_path = os.path.realpath('chromedriver.exe')
-    driver = webdriver.Chrome(executable_path=chrome_path)
+    #chrome_path = os.path.realpath('chromedriver.exe')
+    #driver = webdriver.Chrome(executable_path=chrome_path)
+    driver = webdriver.Chrome()
     driver.get(url)
     count=2
     
@@ -26,12 +25,14 @@ def walmart(url,product):
         
         while True:  
             try:
-                next_page=driver.find_element_by_xpath("//button[contains(@class, 'paginator-btn-next')]")
+                #Check if there is the next page
+                driver.find_element_by_xpath("//button[contains(@class, 'paginator-btn-next')]")
             except NoSuchElementException:
                 print("There is no next page.")
                 break
             
             try:
+                #Get all reviews
                 element_list=driver.find_elements_by_xpath("//div[@class='review-text']/p")
                 for item in element_list:
                     writer.writerow([item.text.strip()])
